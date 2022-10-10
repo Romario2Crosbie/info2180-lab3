@@ -1,22 +1,30 @@
 window.onload = function() {
     let grid = document.getElementById("board");
-    console.log(grid.childNodes);
+    const player_1 = "X"
+    const player_2 = "O"
+    let currentPlayer = player_1
+    
+    
     grid.childNodes.forEach(element => {
-        element.className = "square";
+        element.className = "square"
     });
-        
-    const O_TEXT = "O"
-    const X_TEXT = "X"
 
-    const startGame = () => {
-        grid.childNodes.forEach(grd => grd.addEventListener('click', boxClicked))
-    }
+    grid.childNodes.forEach(function(grd){
+        grd.addEventListener('click' , function(){
+            if (grd.innerText.trim() != "")return
+            grd.innerText = currentPlayer
+            if(currentPlayer == player_1){
+                grd.classList.add("X")
+                console.log(grd)
+            } else {
+                grd.classList.add("O")
+            }
+            currentPlayer = currentPlayer == player_1 ? player_2 : player_1
+           
 
-    function boxClicked(e){
-        console.log(e.target)
-    }
-
-    startGame()
+        })
+    })
+  
 
     
 }
